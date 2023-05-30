@@ -1,0 +1,31 @@
+import {
+  jsonb,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  uniqueIndex,
+} from "drizzle-orm/pg-core";
+import { InferModel } from "drizzle-orm";
+import { sql } from "@vercel/postgres";
+import { drizzle } from "drizzle-orm/vercel-postgres";
+
+export const UsersTable = pgTable(
+  "users",
+  {
+    id: serial("id").primaryKey(),
+    email: text("email").notNull(),
+    likedMovies: jsonb("liked_movies").$type<MovieSchema[]>(),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+  },
+  (users) => {
+    return {
+      uniqueIdx: uniqueIndex("unique_idx").on(users.email),
+    };
+  }
+);
+
+export type User = InferModel<typeof UsersTable>;
+export type NewUser = InferModel<typeof UsersTable, "insert">;
+
+export const db = drizzle(sql);
