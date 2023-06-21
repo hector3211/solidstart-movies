@@ -57,18 +57,18 @@ export default function LoginPage() {
   });
   return (
     <main>
-      <Form class=" flex flex-col h-screen bg-neutral items-center justify-start drop-shadow-2xl">
+      <Form class="flex flex-col h-screen pt-10 bg-neutral items-center justify-start drop-shadow-2xl">
         <input
           type="text"
           placeholder=" Email"
           name="email"
-          class="w-3/4 h-1/6 md:h-14 rounded-md outline outline-2 outline-accent-focus"
+          class="w-3/4 lg:w-1/4 h-1/6 md:h-14 rounded-md outline outline-2 outline-accent-focus"
         />
-        <div class="w-3/4 flex justify-between mt-3">
-          <label>
+        <div class="w-3/4 lg:w-1/2 flex justify-center mt-3">
+          <label class="mx-4">
             <input type="radio" name="loginType" value={"login"} /> Login
           </label>
-          <label>
+          <label class="mx-4">
             <input type="radio" name="loginType" value={"signup"} /> SignUp
           </label>
         </div>
@@ -77,8 +77,8 @@ export default function LoginPage() {
             {loggingIn.error.message}
           </p>
         </Show>
-        <button class="btn btn-primary btn-sm" type="submit">
-          {data() ? "login" : ""}
+        <button class="btn btn-primary btn-sm mt-5" type="submit">
+          {data() ? "Submit" : ""}
         </button>
       </Form>
       <button class="btn btn-primary btn-wide">
